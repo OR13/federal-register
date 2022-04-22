@@ -8,7 +8,7 @@ on:
 jobs:
   demo:
     runs-on: ubuntu-latest
-    name: Checkout
+    name: Read Text Document
     steps:
       - name: Read Documents
         uses: or13/federal-register@v0.0.2
@@ -22,3 +22,7 @@ jobs:
         with:
           document_number: ${{ fromJson(steps.read_docs.outputs.json).results[0].document_number }}
           raw: true
+
+      - name: Review the Document
+        run: |-
+          echo "${{ steps.read_doc.outputs.text }}"

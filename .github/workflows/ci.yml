@@ -33,7 +33,6 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: read
         with:
-          read: "recent-documents"
           agency: "commerce-department"
 
       - name: Review the results
@@ -44,7 +43,7 @@ jobs:
     needs:
       - read_docs
     runs-on: ubuntu-latest
-    name: Read Document as Text
+    name: Read Document
     steps:
       - name: Cache Restore
         uses: actions/cache@v2
@@ -57,7 +56,6 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: read
         with:
-          read: "text"
           document_number: ${{ fromJson(needs.read_docs.outputs.json).results[0].document_number }}
 
       - name: Review the results

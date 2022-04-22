@@ -22,7 +22,9 @@
   "dependencies": {
     "@actions/core": "^1.6.0",
     "axios": "^0.26.1",
-    "js-yaml": "^4.1.0"
+    "html-to-text": "^8.2.0",
+    "js-yaml": "^4.1.0",
+    "pdfreader": "^1.4.0"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.33.4",

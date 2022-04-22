@@ -11,6 +11,10 @@ inputs:
       Documents, see: 
       curl -X GET "https://www.federalregister.gov/api/v1/documents/2022-08590.json" -H "accept: */*"
 
+  raw:
+    description: |
+      Set this value to true if you wish for raw pdf text to be used instead of abstract.
+
 outputs:
   json:
     description: "The output in as json."

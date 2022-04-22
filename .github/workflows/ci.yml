@@ -29,8 +29,8 @@ jobs:
           path: |
             ./*
           key: ${{ github.sha }}
-      - name: Latest from Commerce
-        uses: ./ # Uses an action in the root directory
+      - name: Read Documents from Commerce Department
+        uses: ./
         id: read
         with:
           agency: "commerce-department"
@@ -52,11 +52,12 @@ jobs:
           path: |
             ./*
           key: ${{ github.sha }}
-      - name: Get Raw Text for Document URL
-        uses: ./ # Uses an action in the root directory
+      - name: Read a Document
+        uses: ./
         id: read
         with:
           document_number: ${{ fromJson(needs.read_docs.outputs.json).results[0].document_number }}
+          raw: true
 
       - name: Review the results
         run: |-

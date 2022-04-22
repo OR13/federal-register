@@ -16,4 +16,4 @@ jobs:
 
       - name: Review the results
         run: |
-          echo "${{ steps.read.outputs.json }}" | jq
+          echo '${{ steps.read.outputs.json }}' | jq -r '.description'

@@ -1,23 +1,9 @@
-# Hello world javascript action
+# Federal Register
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+This repo defines a github action for accessing the data provided by:
 
-## Inputs
+- [https://www.federalregister.gov/developers/documentation/api/v1](https://www.federalregister.gov/developers/documentation/api/v1)
 
-## `agency`
+### Examples
 
-**Required** The name of the person to greet. Default `"World"`.
-
-## Outputs
-
-## `time`
-
-The time we greeted you.
-
-## Example usage
-
-```yml
-uses: actions/hello-world-javascript-action@v1.1
-with:
-  agency: "Mona the Octocat"
-```
+TODO

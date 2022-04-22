@@ -13,7 +13,7 @@ inputs:
 
   raw:
     description: |
-      Set this value to true if you wish for raw pdf text to be used instead of abstract.
+      Set this value to true if you wish for raw text to be used instead of abstract.
 
 outputs:
   json:

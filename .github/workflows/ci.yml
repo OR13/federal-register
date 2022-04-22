@@ -60,4 +60,4 @@ jobs:
 
       - name: Review the results
         run: |-
-          echo '${{ steps.read.outputs.text }}'
+          echo "${{ steps.read.outputs.text }}"

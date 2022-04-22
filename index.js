@@ -1,11 +1,16 @@
 const core = require("@actions/core");
+const yaml = require("js-yaml");
+const fs = require("fs");
 
 const lib = require("./src");
 
 const getOpts = () => {
-  const agency = core.getInput("agency");
-  const document_number = core.getInput("document_number");
-  return { agency, document_number };
+  const doc = yaml.load(fs.readFileSync("./action.yml", "utf8"));
+  let opts = {};
+  for (const opt of Object.keys(doc.inputs)) {
+    opts[opt] = core.getInput(opt);
+  }
+  return opts;
 };
 
 async function run() {

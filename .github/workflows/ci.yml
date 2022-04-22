@@ -15,5 +15,5 @@ jobs:
           agency: "commerce-department"
 
       - name: Review the results
-        run: |
-          echo '${{ steps.read.outputs.json }}' | jq -r '.description'
+        run: |-
+          echo '${{ fromJson(steps.read.outputs.json).description }}'

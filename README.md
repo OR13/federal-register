@@ -8,8 +8,4 @@ Please review their documentation before using this action.
 
 ### Examples
 
-#### Getting All Latest Documents
-
-```yml
-
-```
+See [demo.yml](./.github/workflows/demo.yml)

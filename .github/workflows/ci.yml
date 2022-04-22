@@ -58,7 +58,7 @@ jobs:
         id: read
         with:
           read: "text"
-          document_number: ${{ fromJson(${{needs.read_docs.outputs.json}}).results[0].document_number }}
+          document_number: ${{ fromJson(needs.read_docs.outputs.json).results[0].document_number }}
 
       - name: Review the results
         run: |-

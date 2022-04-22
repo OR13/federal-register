@@ -5814,19 +5814,42 @@ exports.debug = debug; // for test
 
 /***/ }),
 
-/***/ 8870:
+/***/ 7437:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 const axios = __nccwpck_require__(6545);
 
-const getLatestDocumentsFromAgency = async (agency) => {
-  const url = `https://www.federalregister.gov/api/v1/documents.json?per_page=20&order=newest&conditions[agencies][]=${agency}`;
+const getDocument = async (options = {}) => {
+  const { document_number } = options;
+  const url = `https://www.federalregister.gov/api/v1/documents/${document_number}.json`;
   const res = await axios.get(url);
   const { data } = res;
   return data;
 };
 
-module.exports = getLatestDocumentsFromAgency;
+module.exports = getDocument;
+
+
+/***/ }),
+
+/***/ 6899:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const axios = __nccwpck_require__(6545);
+
+const getDocuments = async (options = {}) => {
+  let url = `https://www.federalregister.gov/api/v1/documents.json?per_page=20&order=newest`;
+
+  if (options.agency) {
+    url += `&conditions[agencies][]=${options.agency}`;
+  }
+
+  const res = await axios.get(url);
+  const { data } = res;
+  return data;
+};
+
+module.exports = getDocuments;
 
 
 /***/ }),
@@ -5834,10 +5857,12 @@ module.exports = getLatestDocumentsFromAgency;
 /***/ 4351:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const getLatestDocumentsFromAgency = __nccwpck_require__(8870);
+const getDocuments = __nccwpck_require__(6899);
+const getDocument = __nccwpck_require__(7437);
 
 module.exports = {
-  getLatestDocumentsFromAgency,
+  getDocuments,
+  getDocument,
 };
 
 
@@ -6000,21 +6025,23 @@ const core = __nccwpck_require__(2186);
 
 const lib = __nccwpck_require__(4351);
 
-const mapper = {
-  ["recent-documents"]: async () => {
-    const agency = core.getInput("agency");
-    const response = await lib.getLatestDocumentsFromAgency(agency);
-    core.setOutput("json", JSON.stringify(response));
-  },
+const getOpts = () => {
+  const agency = core.getInput("agency");
+  const document_number = core.getInput("document_number");
+  return { agency, document_number };
 };
 
 async function run() {
   try {
-    const read = core.getInput("read");
-    if (mapper[read]) {
-      return mapper[read]();
+    const opts = getOpts();
+
+    if (opts.document_number) {
+      const response = await lib.getDocument(opts);
+      core.setOutput("json", JSON.stringify(response));
+      core.setOutput("text", response.abstract);
     } else {
-      throw new Error("Unsupported operation");
+      const response = await lib.getDocuments(opts);
+      core.setOutput("json", JSON.stringify(response));
     }
   } catch (error) {
     core.setFailed(error.message);

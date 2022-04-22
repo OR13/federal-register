@@ -1,19 +1,19 @@
 name: "Federal Register"
 description: "Access the Daily Journal of the United States Government"
 inputs:
-  read:
-    description: |
-      The type of content to read.
-    required: true
-  agency: # id of input
+  agency:
     description: |
       Agencies, see: 
       curl -X GET "https://www.federalregister.gov/api/v1/agencies" -H "accept: */*"
-    required: true
+
+  document_number:
+    description: |
+      Documents, see: 
+      curl -X GET "https://www.federalregister.gov/api/v1/documents/2022-08590.json" -H "accept: */*"
 
 outputs:
-  time: # id of output
-    description: "The time we greeted you"
+  json:
+    description: "The output in as json."
 runs:
   using: "node16"
   main: "dist/index.js"

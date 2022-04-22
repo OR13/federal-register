@@ -1,5 +1,7 @@
-const getLatestDocumentsFromAgency = require("./getLatestDocumentsFromAgency");
+const getDocuments = require("./getDocuments");
+const getDocument = require("./getDocument");
 
 module.exports = {
-  getLatestDocumentsFromAgency,
+  getDocuments,
+  getDocument,
 };

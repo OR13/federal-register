@@ -1,19 +1,19 @@
 on: [push]
 
 jobs:
-  hello_world_job:
+  read_docs:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Latest Docs from Commerce Department
     steps:
-      # To use this repository's private action,
-      # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Hello world action step
+      - name: Read latest docs
         uses: ./ # Uses an action in the root directory
-        id: hello
+        id: read
         with:
-          who-to-greet: "Mona the Octocat"
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+          read: "recent-documents"
+          agency: "commerce-department"
+
+      - name: Review the results
+        run: |
+          echo "${{ steps.read.outputs.json }}" | jq

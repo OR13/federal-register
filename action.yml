@@ -1,10 +1,16 @@
-name: "Hello World"
-description: "Greet someone and record the time"
+name: "Federal Register"
+description: "Access the Daily Journal of the United States Government"
 inputs:
-  who-to-greet: # id of input
-    description: "Who to greet"
+  read:
+    description: |
+      The type of content to read.
     required: true
-    default: "World"
+  agency: # id of input
+    description: |
+      Agencies, see: 
+      curl -X GET "https://www.federalregister.gov/api/v1/agencies" -H "accept: */*"
+    required: true
+
 outputs:
   time: # id of output
     description: "The time we greeted you"

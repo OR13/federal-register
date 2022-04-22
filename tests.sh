@@ -2,4 +2,4 @@
 # -H "accept: */*" | jq '.results[0].document_number'
 
 
-curl -sX GET "https://www.federalregister.gov/api/v1/documents/2022-08590.json" -H "accept: */*" | jq
+# curl -sX GET "https://www.federalregister.gov/api/v1/documents/2022-08590.json" -H "accept: */*" | jq

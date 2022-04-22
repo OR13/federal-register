@@ -18,6 +18,8 @@ inputs:
 outputs:
   json:
     description: "The output in as json."
+  text:
+    description: "The output in as text."
 runs:
   using: "node16"
   main: "dist/index.js"

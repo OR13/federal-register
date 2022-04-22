@@ -1,0 +1,22 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    name: Checkout
+    steps:
+      - name: Read Documents
+        uses: ./
+        id: read_docs
+        with:
+          agency: "commerce-department"
+
+      - name: Read a Document
+        uses: ./
+        id: read_doc
+        with:
+          document_number: ${{ fromJson(steps.read_docs.outputs.json).results[0].document_number }}
+          raw: true

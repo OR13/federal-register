@@ -1,12 +1,15 @@
 {
   "name": "federal-register",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "shove": "npm run build; git add -A; git commit -m ':rocket:'; git push origin main",
     "build": "ncc build index.js --license licenses.txt",
-    "test": "jest"
+    "test": "jest",
+    "prerelease": "npm run build",
+    "release": "npm version patch && git add ./package.json",
+    "postrelease": "git push --tags",
+    "shove": "npm run build; git add -A; git commit -m ':rocket:'; git push origin main"
   },
   "repository": {
     "type": "git",

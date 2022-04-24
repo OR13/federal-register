@@ -59,7 +59,9 @@ jobs:
         id: read
         with:
           document_number: ${{ fromJson(needs.read_docs.outputs.json).results[0].document_number }}
+          raw: true
+          limit: 3000
 
       - name: Review the results
         run: |-
-          echo "${{ steps.read.outputs.text }}"
+          tail -n +8  "${{ steps.read.outputs.text }}" | head -n 40

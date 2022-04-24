@@ -15,6 +15,10 @@ inputs:
     description: |
       Set this value to true if you wish for raw text to be used instead of abstract.
 
+  limit:
+    description: |
+      The number of characters in a raw text.
+
 outputs:
   json:
     description: "The output in as json."

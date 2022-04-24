@@ -44660,7 +44660,9 @@ const getOpts = () => {
     agency: core.getInput("agency"),
     document_number: core.getInput("document_number"),
     raw: core.getInput("raw"),
-    limit: parseInt(core.getInput("raw"), 10),
+    limit: core.getInput("raw")
+      ? parseInt(core.getInput("raw"), 10)
+      : undefined,
   };
 };
 
@@ -44676,7 +44678,7 @@ async function run() {
         try {
           const { raw_text_url } = response;
           const text = await lib.getRawTextFromUrl({ raw_text_url });
-          core.setOutput("text", text.substring(0, limit || text.length));
+          core.setOutput("text", text.substring(0, opts.limit || text.length));
         } catch (e) {
           console.warn(e.message);
         }

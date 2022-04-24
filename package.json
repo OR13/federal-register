@@ -24,9 +24,7 @@
   "homepage": "https://github.com/OR13/federal-register#readme",
   "dependencies": {
     "@actions/core": "^1.6.0",
-    "axios": "^0.26.1",
-    "html-to-text": "^8.2.0",
-    "pdfreader": "^1.4.0"
+    "axios": "^0.26.1"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.33.4",

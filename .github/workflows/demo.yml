@@ -11,17 +11,19 @@ jobs:
     name: Read Text Document
     steps:
       - name: Read Documents
-        uses: or13/federal-register@v0.0.2
+        uses: or13/federal-register@v0.0.3
         id: read_docs
         with:
           agency: "commerce-department"
 
       - name: Read a Document
-        uses: or13/federal-register@v0.0.2
+        uses: or13/federal-register@v0.0.3
         id: read_doc
         with:
           document_number: ${{ fromJson(steps.read_docs.outputs.json).results[0].document_number }}
+          raw: true
+          limit: 1000
 
       - name: Review the Document
         run: |-
-          echo "${{ steps.read_doc.outputs.text }}"
+          echo -e '${{ steps.read_doc.outputs.text }}' | jq -Rr @html

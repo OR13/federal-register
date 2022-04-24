@@ -5854,45 +5854,6 @@ module.exports = getDocuments;
 
 /***/ }),
 
-/***/ 4682:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const { PdfReader } = __nccwpck_require__(412);
-
-const getPdfBuffer = async (url) => {
-  const res = await axios({
-    url: url,
-    method: "GET",
-    responseType: "arraybuffer", // important
-  });
-  const { data } = res;
-  return data;
-};
-
-const getTextFromPdfBuffer = async (pdfBuffer) => {
-  let data = "";
-  return new Promise((resolve, reject) => {
-    new PdfReader().parseBuffer(pdfBuffer, (err, item) => {
-      if (err) reject(err);
-      else if (!item) resolve(data);
-      else if (item.text) {
-        data += "\n" + item.text;
-      }
-    });
-  });
-};
-
-const getRawTextFromPdfUrl = async (url) => {
-  const buf = await getPdfBuffer(url);
-  const text = await getTextFromPdfBuffer(buf);
-  return text;
-};
-
-module.exports = getRawTextFromPdfUrl;
-
-
-/***/ }),
-
 /***/ 3095:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
@@ -5916,23 +5877,13 @@ module.exports = getRawTextFromUrl;
 
 const getDocuments = __nccwpck_require__(6899);
 const getDocument = __nccwpck_require__(7437);
-const getRawTextFromPdfUrl = __nccwpck_require__(4682);
 const getRawTextFromUrl = __nccwpck_require__(3095);
 
 module.exports = {
   getDocuments,
   getDocument,
   getRawTextFromUrl,
-  getRawTextFromPdfUrl,
 };
-
-
-/***/ }),
-
-/***/ 412:
-/***/ ((module) => {
-
-module.exports = eval("require")("pdfreader");
 
 
 /***/ }),

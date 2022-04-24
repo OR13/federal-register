@@ -64,4 +64,4 @@ jobs:
 
       - name: Review the results
         run: |-
-          echo `${{ steps.read.outputs.text }}` | jq -Rr @html
+          echo -e '${{ steps.read.outputs.text }}' | jq -Rr @html

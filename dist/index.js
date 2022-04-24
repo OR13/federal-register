@@ -6050,8 +6050,8 @@ const getOpts = () => {
     agency: core.getInput("agency"),
     document_number: core.getInput("document_number"),
     raw: core.getInput("raw"),
-    limit: core.getInput("raw")
-      ? parseInt(core.getInput("raw"), 10)
+    limit: core.getInput("limit")
+      ? parseInt(core.getInput("limit"), 10)
       : undefined,
   };
 };

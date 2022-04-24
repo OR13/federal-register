@@ -60,7 +60,7 @@ jobs:
         with:
           document_number: ${{ fromJson(needs.read_docs.outputs.json).results[0].document_number }}
           raw: true
-          limit: 20
+          limit: 4000
 
       - name: Review the results
         run: |-

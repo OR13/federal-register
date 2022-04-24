@@ -44672,9 +44672,13 @@ async function run() {
       core.setOutput("json", JSON.stringify(response));
       core.setOutput("text", response.abstract);
       if (opts.raw) {
-        const { raw_text_url } = response;
-        const text = await lib.getRawTextFromUrl({ raw_text_url });
-        core.setOutput("text", text);
+        try {
+          const { raw_text_url } = response;
+          const text = await lib.getRawTextFromUrl({ raw_text_url });
+          core.setOutput("text", text);
+        } catch (e) {
+          console.warn(e.message);
+        }
       }
     } else {
       const response = await lib.getDocuments(opts);
